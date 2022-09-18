@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv('/Users/karlbjorkman/desktop/personal_projects/film_library/film_collection.csv')
+df = pd.read_csv('film_collection.csv')
 df2 = pd.read_csv('ratings.csv')
 film_collection = df.drop(columns=['URL', 'Description'])
 ratings = df2.drop(columns = ['Letterboxd URI'])
