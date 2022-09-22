@@ -17,8 +17,8 @@ ratings = df2.drop(columns = ['Letterboxd URI'])
 
 # # print(year_count)
 
+# This code block asks the user for a year and outputs the films from that year that he owns
 movie_year = int(input("Enter a movie year: "))
-
 def year_titles(film_year):
     year_titles = film_collection[film_collection.Year == film_year]
     if year_titles.empty:
