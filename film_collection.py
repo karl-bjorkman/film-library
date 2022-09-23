@@ -2,38 +2,35 @@ import pandas as pd
 import random
 import time
 
+# All data collected from local .CSV files
 df = pd.read_csv('film_collection.csv')
-df2 = pd.read_csv('ratings.csv')
-film_collection = df.drop(columns=['URL', 'Description'])
-ratings = df2.drop(columns = ['Letterboxd URI'])
+film_collection = df.drop(columns = ['URL', 'Description'])
 
-# updated_films_csv = film_collection.to_csv('/Users/karlbjorkman/desktop/updated_film_collection.csv')
+df2 = pd.read_csv('ext_diary.csv')
+diary = df2.drop(columns=['Date', 'Year', 'Letterboxd URI', 'Rating', 'Tags'])
+diary.rename(columns={'Name': 'Title'}, inplace=True)
 
-# year_count = film_collection\
-#     .groupby('Year')\
-#     ['Position']\
-#     .count()\
-#     .reset_index()
 
-# year_count.rename(columns = {'Position': 'Count'}, inplace = True)
+# Returns most recent date the inputted film was watched by the user
+def last_seen(dates_df):
+    film_title = input("Enter a film title: ")
+    date_lst = []
 
-# print(year_count)
+    for i in range(len(dates_df)):
+        if dates_df.iloc[i]['Title'] == film_title:
+            date_lst.append(dates_df.iloc[i]['Watched Date'])
+    date_last_seen = date_lst[-1]
 
-# This code block asks the user for a year and outputs the films from that year that he owns
-# def year_titles(film_library):
-#     movie_year = int(input("Enter a movie year: "))
-#     year_titles = film_library[film_library.Year == movie_year]
-#     if year_titles.empty:
-#         return "I own 0 films from this year."
-#     else:
-#         return year_titles
+    return "You last saw '{film}' on {date}.".format(film = film_title, date = date_last_seen)
 
-# print(ratings)
+print(last_seen(diary))
 
+# Returns a randomized film recommendation from the inputted year
 def rec_by_year(film_library):
     rec_id = 0
     recommendation = ''
 
+    print()
     movie_year = int(input("Enter a movie year: "))
     year_titles_db = film_library[film_library.Year == movie_year]
 
@@ -41,7 +38,7 @@ def rec_by_year(film_library):
     print(year_titles_db)
     print()
 
-    time.sleep(3.0)
+    time.sleep(2.0)
 
     year_titles_series = film_library[film_library.Year == movie_year].Name
     year_titles = year_titles_series.tolist()
@@ -53,6 +50,5 @@ def rec_by_year(film_library):
         recommendation = year_titles[rec_id]
 
     return "You should watch '{rec}' tonight!".format(rec = recommendation)
-
 
 print(rec_by_year(film_collection))
