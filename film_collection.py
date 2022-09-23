@@ -1,7 +1,7 @@
 import pandas as pd
 import random
 import time
-
+  
 # All data collected from local .CSV files
 df = pd.read_csv('film_collection.csv')
 film_collection = df.drop(columns = ['URL', 'Description'])
@@ -23,7 +23,7 @@ def rec_by_year(film_library):
     print(year_titles_db)
     print()
 
-    time.sleep(2.0)
+    time.sleep(2.0) 
 
     year_titles_series = film_library[film_library.Year == movie_year].Name
     year_titles = year_titles_series.tolist()
@@ -36,7 +36,7 @@ def rec_by_year(film_library):
 
     return "You should watch '{rec}' tonight!".format(rec = recommendation)
 
-print(rec_by_year(film_collection))
+# print(rec_by_year(film_collection))
 
 # Returns most recent date the inputted film was watched by the user
 def last_seen(dates_df):
