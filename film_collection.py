@@ -20,13 +20,13 @@ ratings = df2.drop(columns = ['Letterboxd URI'])
 # print(year_count)
 
 # This code block asks the user for a year and outputs the films from that year that he owns
-def year_titles(film_library):
-    movie_year = int(input("Enter a movie year: "))
-    year_titles = film_library[film_library.Year == movie_year]
-    if year_titles.empty:
-        return "I own 0 films from this year."
-    else:
-        return year_titles
+# def year_titles(film_library):
+#     movie_year = int(input("Enter a movie year: "))
+#     year_titles = film_library[film_library.Year == movie_year]
+#     if year_titles.empty:
+#         return "I own 0 films from this year."
+#     else:
+#         return year_titles
 
 # print(ratings)
 
@@ -35,6 +35,13 @@ def rec_by_year(film_library):
     recommendation = ''
 
     movie_year = int(input("Enter a movie year: "))
+    year_titles_db = film_library[film_library.Year == movie_year]
+
+    print()
+    print(year_titles_db)
+    print()
+
+    time.sleep(3.0)
 
     year_titles_series = film_library[film_library.Year == movie_year].Name
     year_titles = year_titles_series.tolist()
@@ -48,6 +55,4 @@ def rec_by_year(film_library):
     return "You should watch '{rec}' tonight!".format(rec = recommendation)
 
 
-print(year_titles(film_collection))
-time.sleep(2.0)
 print(rec_by_year(film_collection))
