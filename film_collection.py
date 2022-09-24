@@ -7,8 +7,8 @@ df = pd.read_csv('film_collection.csv')
 film_collection = df.drop(columns = ['URL', 'Description'])
 
 df2 = pd.read_csv('ext_diary.csv')
-diary = df2.drop(columns=['Date', 'Year', 'Letterboxd URI', 'Rating', 'Tags'])
-diary.rename(columns={'Name': 'Title'}, inplace=True)
+diary = df2.drop(columns = ['Date', 'Year', 'Letterboxd URI', 'Rating', 'Tags'])
+diary.rename(columns = {'Name': 'Title'}, inplace = True)
 
 # Returns a randomized film recommendation from the inputted year
 def rec_by_year(film_library):
