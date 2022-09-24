@@ -1,6 +1,7 @@
 import pandas as pd
 import random
 import time
+from datetime import datetime
   
 # All data collected from local .CSV files
 df = pd.read_csv('film_collection.csv')
@@ -38,17 +39,32 @@ def rec_by_year(film_library):
 
 # print(rec_by_year(film_collection))
 
-# Returns most recent date the inputted film was watched by the user
+# Returns most recent date the entered film was watched by the film collection owner
 def last_seen(dates_df):
     print()
     film_title = input("Enter a film title: ")
+    print()
     date_lst = []
 
     for i in range(len(dates_df)):
         if dates_df.iloc[i]['Title'] == film_title:
             date_lst.append(dates_df.iloc[i]['Watched Date'])
     date_last_seen = date_lst[-1]
+    # last_seen = "{month}-{day}-{year}".format(month=date_last_seen[5:7],\
+    #                                           day=date_last_seen[8:10],\
+    #                                           year=date_last_seen[:4])
+    ls_split = date_last_seen.split("-")
+    last_seen = ls_split[1] + '-' + ls_split[2] + '-' + ls_split[0]
 
-    return "You last saw '{film}' on {date}.".format(film=film_title, date=date_last_seen)
+    raw_date = datetime.strptime(last_seen, "%m-%d-%Y")
+    date_str = datetime.strftime(raw_date, "%A, %B %d, %Y")
+
+    ago_date = datetime.now() - raw_date
+    ago_str = str(ago_date).split(',')
+    days_ago = ago_str[0]
+
+    print("You last saw '{film}' on {date}. That was {days} ago.".format(film=film_title, date=date_str, days=days_ago))
+
+    return date_last_seen
 
 print(last_seen(diary))
