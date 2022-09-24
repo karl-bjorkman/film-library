@@ -43,12 +43,14 @@ def rec_by_year(film_library):
 def last_seen(dates_df):
     print()
     film_title = input("Enter a film title: ")
+    df_title = ""
     print()
     date_lst = []
 
     for i in range(len(dates_df)):
-        if dates_df.iloc[i]['Title'] == film_title:
+        if dates_df.iloc[i]['Title'].lower() == film_title.lower():
             date_lst.append(dates_df.iloc[i]['Watched Date'])
+            df_title = dates_df.iloc[i]['Title']
     date_last_seen = date_lst[-1]
     # last_seen = "{month}-{day}-{year}".format(month=date_last_seen[5:7],\
     #                                           day=date_last_seen[8:10],\
@@ -63,8 +65,22 @@ def last_seen(dates_df):
     ago_str = str(ago_date).split(',')
     days_ago = ago_str[0]
 
-    print("You last saw '{film}' on {date}. That was {days} ago.".format(film=film_title, date=date_str, days=days_ago))
+    print("You last saw '{film}' on {date}. That was {days} ago.".format(film=df_title, date=date_str, days=days_ago))
 
     return date_last_seen
 
-print(last_seen(diary))
+# print(last_seen(diary))
+
+print("Hello!")
+print("What feature would you like to use?")
+print()
+print("1. Movie recommendation by year\n2. Last time you saw a particular film")
+print()
+select_function = input(": ")
+
+if select_function == '1':
+    print(rec_by_year(film_collection))
+elif select_function == '2':
+    print(last_seen(diary))
+else:
+    print("Sorry, that was not an option!")
