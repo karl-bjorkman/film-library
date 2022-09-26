@@ -29,4 +29,5 @@ the user asks the program to do. Such as...
 > I think this is the beginning\
 > of a beautiful friendship.
 
-**I look forward to finishing this portfolio project!**
+**I look forward to finishing this portfolio project...*
+*But there is still much work to be done.*
