@@ -25,7 +25,7 @@ def rec_by_year(film_library):
     print()
 
     # Rest of the function prints out randomized selection from dataset gathered above
-    time.sleep(2.0) 
+    time.sleep(3.0) 
 
     year_titles_series = film_library[film_library.Year == movie_year].Name
     year_titles = year_titles_series.tolist()
