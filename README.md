@@ -29,5 +29,10 @@ the user asks the program to do. Such as...
 > I think this is the beginning\
 > of a beautiful friendship.
 
+### Next Steps...
+
+I do need to implement a way to easily add new additions to the\
+physical media collection so that the .CSV file won't be out of date.
+
 **I look forward to finishing this portfolio project...*
 *But there is still much work to be done.*
