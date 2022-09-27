@@ -52,10 +52,12 @@ def last_seen(dates_df):
         if dates_df.iloc[i]['Title'].lower() == film_title.lower():
             date_lst.append(dates_df.iloc[i]['Watched Date'])
             df_title = dates_df.iloc[i]['Title']
-    date_last_seen = date_lst[-1]
-    # last_seen = "{month}-{day}-{year}".format(month=date_last_seen[5:7],\
-    #                                           day=date_last_seen[8:10],\
-    #                                           year=date_last_seen[:4])
+    if not date_lst:
+        print("Sorry, you haven't watched this film since you began logging on Letterboxd!")
+        return None
+    else:
+     date_last_seen = date_lst[-1]
+    
     ls_split = date_last_seen.split("-")
     last_seen = ls_split[1] + '-' + ls_split[2] + '-' + ls_split[0]
 
